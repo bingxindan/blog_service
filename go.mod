@@ -3,9 +3,13 @@ module blog_service
 go 1.16
 
 require (
-	github.com/go-sql-driver/mysql v1.6.0 // indirect
-	github.com/tal-tech/go-zero v1.2.1
-	golang.org/x/net v0.0.0-20210928044308-7d9f5e0b762b // indirect
-	golang.org/x/sys v0.0.0-20210927094055-39ccf1dd6fa6 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	github.com/bingxindan/bxd_go_lib v0.0.0-20211122195410-366b8970a5b8
+	github.com/gin-gonic/gin v1.7.4
+	github.com/pkg/errors v0.9.1
+	github.com/spf13/cast v1.4.1
+	gorm.io/driver/clickhouse v0.2.1
+	gorm.io/driver/mysql v1.2.0
+	gorm.io/driver/sqlserver v1.2.1
+	gorm.io/gorm v1.22.3
+	xorm.io/core v0.7.2-0.20190928055935-90aeac8d08eb
 )

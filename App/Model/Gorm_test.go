@@ -1,4 +1,4 @@
-package model
+package Model
 
 // Orders 对应表结构
 //type Orders struct {

@@ -1,10 +1,10 @@
-package model
+package Model
 
 import (
-	"/xesTools/confutil"
+	"blog_service/App/Model/Db"
+	"github.com/bingxindan/bxd_go_lib/tools/confutil"
 	"github.com/spf13/cast"
 	"gorm.io/gorm"
-	"growth_proteanapi/app/service/db"
 	"strings"
 	"sync"
 	"time"
@@ -18,7 +18,7 @@ func GetDb(connection string) (*gorm.DB, error) {
 		return con, nil
 	}
 	conf := getConf(connection)
-	db, err := db.GetPoolDb(conf)
+	db, err := Db.GetPoolDb(conf)
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func GetDb(connection string) (*gorm.DB, error) {
 	lock.Unlock()
 	return db, nil
 }
-func getConf(connection string) db.Conf {
+func getConf(connection string) Db.Conf {
 	dbType := strings.ToLower(confutil.GetConf(connection, "type"))
 	host := confutil.GetConf(connection, "host")
 	port := cast.ToInt(confutil.GetConf(connection, "port"))
@@ -45,22 +45,22 @@ func getConf(connection string) db.Conf {
 	maxIdle := cast.ToInt(confutil.GetConf(connection, "charset"))
 	maxOpen := cast.ToInt(confutil.GetConf(connection, "charset"))
 	maxLifetime := cast.ToInt(confutil.GetConf(connection, "charset"))
-	var dbT db.Type
+	var dbT Db.Type
 	switch dbType {
 	case "mysql":
-		dbT = db.MYSQL
+		dbT = Db.MYSQL
 	case "postgresql":
-		dbT = db.POSTGRESQL
+		dbT = Db.POSTGRESQL
 	case "sqlite":
-		dbT = db.SQLITE
+		dbT = Db.SQLITE
 	case "sqlserver":
-		dbT = db.SQLSERVER
+		dbT = Db.SQLSERVER
 	case "clickhouse":
-		dbT = db.CLICKHOUSE
+		dbT = Db.CLICKHOUSE
 	default:
 		panic("unsupported database:" + dbType)
 	}
-	conf := db.Conf{
+	conf := Db.Conf{
 		Type:         dbT,
 		Host:         host,
 		Port:         port,
