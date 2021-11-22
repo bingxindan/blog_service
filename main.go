@@ -68,7 +68,7 @@ func NewServer() *Server {
 
 func RequestHeader() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		benchmark := c.GetHeader("Xes-Request-Type")
+		benchmark := c.GetHeader("Bxd-Request-Type")
 		if benchmark == "performance-testing" {
 			c.Set("IS_BENCHMARK", "1")
 		}
